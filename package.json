@@ -1,0 +1,11 @@
+{
+	"name":"node-heello",
+	"description":"node.js library for interaction with the social network Heello",
+	"version":"0.0.1",
+	"dependencies": {
+		"oauth": "0.9.9"
+	},
+	"devDependencies": {},
+	"engines":{ "node":">=0.8.20" },
+	"repository": { "type": "git", "url": "http://github.com/damianb/node-heello.git" }
+}
