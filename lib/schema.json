@@ -1,0 +1,165 @@
+{
+	"accounts": {
+		"update": {
+			"method": "PUT",
+			"mediaParams": [
+				"avatar",
+				"background",
+				"cover"
+			],
+			"needsAuth": true
+		}
+	},
+	"checkins": {
+		"create": {
+			"method": "POST",
+			"mediaParams": [
+				"media"
+			],
+			"needsAuth": true
+		},
+		"show": {
+			"url": ":id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		}
+	},
+	"pings": {
+		"create": {
+			"method": "POST",
+			"mediaParams": [
+				"media"
+			],
+			"needsAuth": true
+		},
+		"destroy": {
+			"url": ":id",
+			"method": "DELETE",
+			"needsAuth": true
+		},
+		"echo": {
+			"url": ":id/echo",
+			"method": "POST",
+			"needsAuth": true
+		},
+		"pings": {
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"search": {
+			"url": "/search",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"show": {
+			"url": ":id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		}
+	},
+	"places": {
+		"create": {
+			"method": "POST",
+			"needsAuth": true
+		},
+		"search": {
+			"url": "search",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"show": {
+			"url": ":id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key",
+				"id"
+			]
+		}
+	},
+	"timeline": {
+		"public": {
+			"url": "public",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		}
+	},
+	"users": {
+		"checkins": {
+			"url": "checkins",
+			"method": "GET",
+			"needsAuth": true
+		},
+		"listen": {
+			"url": ":id/listen",
+			"method": "POST",
+			"needsAuth": true
+		},
+		"listeners": {
+			"url": ":id/listeners",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"listening": {
+			"url": ":id/listening",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"lookup": {
+			"url": "lookup",
+			"method": "GET",
+			"reqQueryParams": [
+				"ids"
+			]
+		},
+		"me": {
+			"url": "me",
+			"method": "GET",
+			"needsAuth": true
+		},
+		"notifications": {
+			"url": "notifications",
+			"method": "GET",
+			"needsAuth": true
+		},
+		"pings": {
+			"url": ":id/pings",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"show": {
+			"url": ":id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"timeline": {
+			"url": "timeline",
+			"method": "GET",
+			"needsAuth": true
+		},
+		"unlisten": {
+			"url": ":id/listen",
+			"method": "DELETE",
+			"needsAuth": true
+		}
+	}
+}
