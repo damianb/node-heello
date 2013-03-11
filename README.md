@@ -17,13 +17,21 @@ var heelloAPI = require('./lib/heello'),
 
 heello.auth() // note: auth not fleshed out yet.
 
-// heello.controller.action(params, callback)
-heello.users.timeline({ count: 20 }, function(err, res) {
-	// err will be any errors encountered with API request - if null, no errors.
-	// res will be the (parsed) JSON response from the server. on error, it may or may not be included when called.
+// heello.controller.action(<Object>params, <Callable>callback)
+
+// get a user's latest pings
+// (no auth)
+heello.users.pings({ id: 1234567, count: 5 }, function(err, res) {
+	if(err) throw err
 	res.forEach(function(ping) {
-		// do stuff with each ping's data here. :D
+		console.log('@%s: %s [%d]', ping.user.username, ping.text, ping.id)
 	})
+})
+
+// echo a ping
+// (needs auth)
+heello.pings.echo({ id: 1234567 }, function(err) {
+	if(err) throw err
 })
 ```
 
