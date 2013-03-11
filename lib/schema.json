@@ -81,7 +81,7 @@
 			"url": ":id",
 			"method": "GET",
 			"reqQueryParams": [
-				"key",
+				"key"
 			]
 		}
 	},
