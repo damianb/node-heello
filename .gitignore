@@ -1,3 +1,4 @@
 *.komodoproject
 config.json
 !config.json.example
+node_modules/
