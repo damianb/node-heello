@@ -3,7 +3,8 @@
 	"description":"node.js library for interaction with the social network Heello",
 	"version":"0.0.1",
 	"dependencies": {
-		"oauth": "0.9.9"
+		"oauth": "0.9.9",
+		"superagent": "0.12.x"
 	},
 	"devDependencies": {},
 	"engines":{ "node":">=0.8.20" },
