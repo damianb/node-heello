@@ -1,5 +1,5 @@
 {
-	"name":"node-heello",
+	"name":"heello",
 	"description":"node.js library for interaction with the social network Heello",
 	"version":"0.0.1",
 	"dependencies": {
