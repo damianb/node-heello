@@ -54,7 +54,8 @@
 			"url": "/search",
 			"method": "GET",
 			"reqQueryParams": [
-				"key"
+				"key",
+				"query"
 			]
 		},
 		"show": {
@@ -96,7 +97,7 @@
 	},
 	"users": {
 		"checkins": {
-			"url": "checkins",
+			"url": ":id/checkins",
 			"method": "GET",
 			"needsAuth": true
 		},

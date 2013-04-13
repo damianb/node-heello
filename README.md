@@ -38,3 +38,9 @@ heello.pings.echo({ id: 1234567 }, function(err) {
 ## warning
 
 Not safe for use, still under active development.
+
+## tests
+
+Install mocha with `npm install -g mocha`, then run `npm test`.
+
+Test coverage is still insufficient and expanding. Community contributions welcome.
