@@ -25,9 +25,8 @@ describe('node-heello Unauthenticated REST API -', function() {
 	})
 
 	describe('pings endpoints -', function() {
-		// @NOTE: seems to 406 for some reason;
-		// heello seems to not handle the Accept versioning header on this endpoint right
-		it('GET /pings/pings (heello.pings.pings)', function(done) {
+		// skipping test; reference: https://github.com/damianb/node-heello/issues/1
+		it.skip('GET /pings/pings (heello.pings.pings)', function(done) {
 			heello.pings.pings(null, function(err, res) {
 				assert.ifError(err, 'request error')
 				assert(res.response instanceof Array, 'response should be an array')
