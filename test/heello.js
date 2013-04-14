@@ -141,11 +141,10 @@ describe('node-heello -', function() {
 		})
 
 		describe('places endpoints -', function() {
-			// @note this will never be tested for obv reasons.
-			//it('POST /places/create')
+			it('POST /places/create')
 
 			it('GET /places/search', function(done) {
-				heello.places.search({ name: 'Starbucks' }, function(err, res) {
+				heello.places.search({ name: 'Starbucks', lat: 32.78411, lon: -79.93823 }, function(err, res) {
 					assert.ifError(err, 'request error')
 					assert(res.response instanceof Array, 'response should be an array')
 					done()
@@ -183,7 +182,7 @@ describe('node-heello -', function() {
 			})
 
 			it('GET /users/lookup',  function(done) {
-				heello.users.lookup({ ids: ['katana'], username: 1 }, function(err, res) {
+				heello.users.lookup({ ids: 'katana', username: 1 }, function(err, res) {
 					assert.ifError(err, 'request error')
 					assert(res.response instanceof Array, 'response should be an array')
 					done()
