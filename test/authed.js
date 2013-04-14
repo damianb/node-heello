@@ -135,7 +135,14 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('pings endpoints -', function() {
-		it('POST /pings/create (heello.pings.create)')
+		it('POST /pings/create (heello.pings.create)', function(done) {
+			heello.pings.create({
+				'ping[text]':'node-heello test ping'
+			}, function(err, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(res.status, 201, 'request error')
+			})
+		})
 
 		it('DELETE /pings/:id (heello.pings.delete)')
 

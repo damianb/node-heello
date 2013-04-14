@@ -28,6 +28,7 @@
 	},
 	"pings": {
 		"create": {
+			"url": "",
 			"method": "POST",
 			"mediaParams": [
 				"media"
@@ -51,7 +52,7 @@
 			]
 		},
 		"search": {
-			"url": "/search",
+			"url": "search",
 			"method": "GET",
 			"reqQueryParams": [
 				"key",

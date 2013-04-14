@@ -69,16 +69,3 @@ describe('node-heello configuration -', function() {
 		done()
 	})
 })
-
-
-function checkReply() {
-	// asdf
-}
-
-function checkResponse() {
-	// asdf
-}
-
-function checkPing() {
-	// asdf
-}
