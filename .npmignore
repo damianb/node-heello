@@ -1,5 +1,0 @@
-*.komodoproject
-node_modules/
-test.js
-response.json
-test.config.json
