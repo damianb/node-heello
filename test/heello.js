@@ -72,20 +72,117 @@ describe('node-heello -', function() {
 
 	describe('REST API -', function() {
 		var heello = new heelloAPI(testConfig)
-			//server = require('http').createServer(function(req, res) {
-			//	var uri = require('url').parse(req.url, true)
-			//	console.dir(uri.query)
-			//}).listen(9009)
+			server = require('http').createServer(function(req, res) {
+				var response = JSON.stringify({ response: require('url').parse(req.url, true).query })
+				res.writeHead(200, {'Content-Type': 'application/json'})
+				res.end(response + '\n')
+			}).listen(9009)
+
+		before(function(done) {
+			var query = {
+				client_id: heello.conf.appId,
+				redirect_uri: heello.conf.callbackURI,
+				response_type: 'code',
+				state: '42'
+			}
+			var cookie = require('cookie'), agent = new request.agent()
+
+
+			require('async').waterfall([
+				function(fn) {
+					var req = request.post(heello.conf.protocol + '://' + heello.conf.domain + '/oauth/authorize')
+						.set('User-Agent', heello.conf.userAgent)
+						.type('form')
+						.send(query)
+
+					req.on('response', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.attachCookies.bind(agent, req))
+					agent.attachCookies(req)
+
+					req.end(function(err, res) {
+						if(err) throw err
+						fn(null, res)
+					})
+				},
+				function(res, fn) {
+
+					var req = request.post(heello.conf.protocol + '://' + heello.conf.domain + '/users/sign_in')
+						.set('User-Agent', heello.conf.userAgent)
+						.set('Referer', '')
+						.type('form')
+					agent.saveCookies(res)
+
+					var $ = require('cheerio').load(res.text)
+
+					var inputs = $('form[action^="/users/sign_in"] input'), input = {},
+						needed = ['authenticity_token', 'state', 'response_type', 'redirect_uri', 'client_id', 'commit']
+					for(var i in inputs) {
+						if(inputs[i].attribs !== undefined && needed.indexOf(inputs[i].attribs.name) !== -1)
+							input[inputs[i].attribs.name] = inputs[i].attribs.value
+					}
+					input.utf8 = new Buffer('e29c93', 'hex').toString()
+					req.send(input)
+					req.send({ user: testConfig.account })
+
+					req.on('response', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.attachCookies.bind(agent, req))
+					agent.attachCookies(req)
+
+					req.end(function(err, res) {
+						if(err) throw err
+						fn(null, res)
+					})
+				},
+				function(res, fn) {
+					var req = request('POST', heello.conf.protocol + '://' + heello.conf.domain + '/oauth/authorize')
+						.set('User-Agent', heello.conf.userAgent)
+						.type('form')
+					agent.saveCookies(res)
+
+					var $ = require('cheerio').load(res.text)
+
+					var inputs = $('form[action^="/oauth/authorize"] input'), input = {},
+						needed = ['authenticity_token', 'state', 'response_type', 'redirect_uri', 'client_id']
+					for(var i in inputs) {
+						if(inputs[i].attribs !== undefined && needed.indexOf(inputs[i].attribs.name) !== -1)
+							input[inputs[i].attribs.name] = inputs[i].attribs.value
+					}
+					input.utf8 = new Buffer('e29c93', 'hex').toString()
+					input.commit = 'Authorize'
+					req.send(input)
+
+					req.on('response', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.saveCookies.bind(agent))
+					req.on('redirect', agent.attachCookies.bind(agent, req))
+					agent.attachCookies(req)
+
+					req.end(function(err, res) {
+						if(err) throw err
+						fn(null, res)
+					})
+				},
+				function(res, fn) {
+					heello.refreshTokens(JSON.parse(res.text).code, fn)
+				}
+			], function(err) {
+				if(err) throw err
+				done()
+			})
+		})
 
 		describe('oauth endpoints -', function() {
-			it('GET /oauth/authorize')
+			it('GET /oauth/authorize', function(done) {
+				assert(heello.code, 'OAuth2 refresh code')
+				done()
+			})
 
-			it('GET /oauth/token')
-			//it('GET /oauth/authorize', function(done) {
-			//	var authURI = heello.getAuthURI('http://127.0.0.1:9009/', 'TESTSTATE')
-			//	console.dir(authURI)
-			//	done()
-			//})
+			it('GET /oauth/token', function(done) {
+				assert(heello.refreshToken, 'OAuth2 refresh token')
+				assert(heello.accessToken, 'OAuth2 access token')
+				done()
+			})
 		})
 
 		describe('accounts endpoints -', function() {
@@ -113,6 +210,7 @@ describe('node-heello -', function() {
 
 			// @NOTE: seems to 406 for some reason;
 			// heello seems to not handle the Accept versioning header on this endpoint right
+			it('GET /pings/pings')
 			/*
 			it('GET /pings/pings', function(done) {
 				heello.pings.pings({}, function(err, res) {
