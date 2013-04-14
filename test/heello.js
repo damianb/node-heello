@@ -106,7 +106,6 @@ describe('node-heello -', function() {
 					})
 				},
 				function(res, fn) {
-
 					var req = request.post(heello.conf.protocol + '://' + heello.conf.domain + '/users/sign_in')
 						.set('User-Agent', heello.conf.userAgent)
 						.set('Referer', '')
@@ -136,6 +135,11 @@ describe('node-heello -', function() {
 					})
 				},
 				function(res, fn) {
+					if(Object.keys(res.body).length){
+						fn(null, res)
+						return
+					}
+
 					var req = request('POST', heello.conf.protocol + '://' + heello.conf.domain + '/oauth/authorize')
 						.set('User-Agent', heello.conf.userAgent)
 						.type('form')
@@ -164,7 +168,7 @@ describe('node-heello -', function() {
 					})
 				},
 				function(res, fn) {
-					heello.refreshTokens(JSON.parse(res.text).code, fn)
+					heello.refreshTokens(res.body.response.code, fn)
 				}
 			], function(err) {
 				if(err) throw err
@@ -173,6 +177,7 @@ describe('node-heello -', function() {
 		})
 
 		describe('oauth endpoints -', function() {
+
 			it('GET /oauth/authorize', function(done) {
 				assert(heello.code, 'OAuth2 refresh code')
 				done()
