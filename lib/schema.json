@@ -46,6 +46,7 @@
 			"needsAuth": true
 		},
 		"pings": {
+			"url": "",
 			"method": "GET",
 			"reqQueryParams": [
 				"key"
