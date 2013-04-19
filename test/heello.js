@@ -64,7 +64,7 @@ describe('node-heello configuration -', function() {
 
 		assert.equal(heello.conf.protocol, 'https', 'protocol')
 		assert.equal(heello.conf.domain, 'api.heello.com', 'domain')
-		assert(heello.conf.userAgent.match(/^node\-heello v/), 'userAgent')
+		assert(heello.conf.userAgent.match(/^node\-heello_v/), 'userAgent')
 
 		done()
 	})
