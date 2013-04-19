@@ -143,9 +143,6 @@ var heelloAPI = require('heello'),
 	})
 
 // @note; authentication needs to happen here - obtain your tokens as per heello docs
-// reference helper methods heelloAPI.getAuthURI, heelloAPI.getTokens, heelloAPI.refreshTokens
-
-// heello.controller.action(<Object>params, <Callable>callback)
 
 // get a user's latest pings
 // (no auth)
