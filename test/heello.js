@@ -13,7 +13,7 @@ if(!require('fs').existsSync(path.normalize(__dirname + '/../test.config.json'))
 var testConfig = require('../test.config.json')
 
 describe('node-heello configuration -', function() {
-	it('throws on empty or no config', function(done) {
+	it('throws on empty config', function(done) {
 		assert.throws(function() {
 			var heello = new heelloAPI({})
 		}, Error)
@@ -22,7 +22,8 @@ describe('node-heello configuration -', function() {
 	it('throws when missing required key "appId"', function(done) {
 		assert.throws(function() {
 			var heello = new heelloAPI({
-				appSecret: '0'
+				appSecret: '0',
+				callbackURI: '0'
 			})
 		}, Error)
 		done()
@@ -30,17 +31,28 @@ describe('node-heello configuration -', function() {
 	it('throws when missing required key "appSecret"', function(done) {
 		assert.throws(function() {
 			var heello = new heelloAPI({
-				appId: '0'
+				appId: '0',
+				callbackURI: '0'
+			})
+		}, Error)
+		done()
+	})
+	it('throws when missing required key "callbackURI"', function(done) {
+		assert.throws(function() {
+			var heello = new heelloAPI({
+				appId: '0',
+				appSecret: '0'
 			})
 		}, Error)
 		done()
 	})
 
-	it('throws when required keys "appId" and "appSecret" are empty', function(done) {
+	it('throws when required keys are empty', function(done) {
 		assert.throws(function() {
 			var heello = new heelloAPI({
 				appId: '',
-				appSecret: ''
+				appSecret: '',
+				callbackURI: ''
 			})
 		}, Error)
 		done()
