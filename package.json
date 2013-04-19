@@ -18,5 +18,5 @@
 	"main": "./lib/heello",
 	"engines":{ "node":">=0.8.18" },
 	"repository": { "type": "git", "url": "http://github.com/damianb/node-heello.git" },
-	"scripts": { "test": "mocha -t 30000 -R spec" }
+	"scripts": { "test": "mocha" }
 }
