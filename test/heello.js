@@ -72,6 +72,7 @@ describe('node-heello configuration -', function() {
 		var heello = new heelloAPI({
 			appId: testConfig.appId,
 			appSecret: testConfig.appSecret,
+			callbackURI: testConfig.callbackURI,
 		})
 
 		assert.equal(heello.conf.protocol, 'https', 'protocol')
