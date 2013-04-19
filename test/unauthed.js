@@ -16,7 +16,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('checkins endpoints -', function() {
 		it('GET /checkins/:id (heello.checkins.show)', function(done) {
-			heello.checkins.show({ id: 8002938 }, function(err, res) {
+			heello.checkins.show({ id: 8002938 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
@@ -25,8 +25,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 	})
 
 	describe('pings endpoints -', function() {
-		// skipping test; reference: https://github.com/damianb/node-heello/issues/1
-		it.skip('GET /pings/pings (heello.pings.pings)', function(done) {
+		it('GET /pings/pings (heello.pings.pings)', function(done) {
 			heello.pings.pings(null, function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert(json.response instanceof Array, 'response should be an array')
