@@ -48,7 +48,7 @@
 			"method": "POST",
 			"needsAuth": true
 		},
-		"pings": {
+		"summary": {
 			"url": "",
 			"method": "GET",
 			"reqQueryParams": [
