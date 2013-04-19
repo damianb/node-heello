@@ -33,6 +33,9 @@
 			"mediaParams": [
 				"media"
 			],
+			"reqQueryParams": [
+				"ping[text]"
+			],
 			"needsAuth": true
 		},
 		"destroy": {
