@@ -13,6 +13,7 @@ var heelloAPI = require('./lib/heello'),
 	heello = new heelloAPI({
 		appId: 'heello appId here',
 		appSecret: 'heello appSecret here',
+		callbackURI: 'http://callback.tld/',
 	})
 
 heello.auth() // note: auth not fleshed out yet.
@@ -21,9 +22,9 @@ heello.auth() // note: auth not fleshed out yet.
 
 // get a user's latest pings
 // (no auth)
-heello.users.pings({ id: 1234567, count: 5 }, function(err, res) {
+heello.users.pings({ id: 1234567, count: 5 }, function(err, json, res) {
 	if(err) throw err
-	res.forEach(function(ping) {
+	json.response.forEach(function(ping) {
 		console.log('@%s: %s [%d]', ping.user.username, ping.text, ping.id)
 	})
 })
@@ -37,7 +38,10 @@ heello.pings.echo({ id: 1234567 }, function(err) {
 
 ## warning
 
-Not safe for use, still under active development.
+Under active development. Heello-interaction API mostly firm.
+
+Initial obtainment of `authorization_code` is up to **$developer** unfortunately, no OOB method for obtaining a code with minimal user interaction.
+See `test/authed.js` for an (ugly) example on how to do it.
 
 ## tests
 
