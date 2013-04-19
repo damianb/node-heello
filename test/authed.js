@@ -15,9 +15,8 @@ var testConfig = require('../test.config.json')
 describe('node-heello Authenticated REST API -', function() {
 	var heello = new heelloAPI(testConfig)
 		server = require('http').createServer(function(req, res) {
-			var response = JSON.stringify({ response: require('url').parse(req.url, true).query })
 			res.writeHead(200, {'Content-Type': 'application/json'})
-			res.end(response + '\n')
+			res.end(JSON.stringify({ response: require('url').parse(req.url, true).query }) + '\n')
 		}).listen(9009)
 
 	before(function(done) {
@@ -135,12 +134,13 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('pings endpoints -', function() {
-		it('POST /pings/create (heello.pings.create)', function(done) {
+		it('POST /pings.json (heello.pings.create)', function(done) {
 			heello.pings.create({
 				'ping[text]':'node-heello test ping'
-			}, function(err, res) {
+			}, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(res.status, 201, 'request error')
+				assert.equal(res.status, 201, 'request error - should return http 201')
+				done()
 			})
 		})
 
