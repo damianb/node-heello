@@ -3,15 +3,14 @@
 	"author": "Damian Bushong <katana@codebite.net>",
 	"description":"node.js library for interaction with the social network Heello",
 	"homepage": "https://github.com/damianb/node-heello",
-	"version":"0.0.2",
+	"version":"0.0.3",
 	"dependencies": {
 		"superagent": "0.12.x"
 	},
 	"devDependencies": {
 		"mocha": "1.9.x",
 		"cheerio": "0.10.x",
-		"async": "0.2.x",
-		"cookie": "0.0.x"
+		"async": "0.2.x"
 	},
 	"bundledDependencies": [
 		"superagent"
