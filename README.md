@@ -16,7 +16,7 @@ var heelloAPI = require('./lib/heello'),
 		callbackURI: 'http://callback.tld/',
 	})
 
-heello.auth() // note: auth not fleshed out yet.
+// @note; authentication needs to happen here - obtain your tokens as per heello docs
 
 // heello.controller.action(<Object>params, <Callable>callback)
 
@@ -40,8 +40,13 @@ heello.pings.echo({ id: 1234567 }, function(err) {
 
 Under active development. Heello-interaction API mostly firm.
 
-Initial obtainment of `authorization_code` is up to **$developer** unfortunately, no OOB method for obtaining a code with minimal user interaction.
+Initial obtainment of `authorization_code` is up to **$developer** unfortunately; no OOB methodology is present for obtaining an authorization_code with minimal user interaction.
 See `test/authed.js` for an (ugly) example on how to do it.
+
+## todo
+
+* file upload support (media uploads!)
+* emit warning when nearing rate limit?
 
 ## tests
 
