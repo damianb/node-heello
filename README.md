@@ -104,7 +104,7 @@ All magic properties return an executable callback created by **heelloAction**. 
 	* [*heello.users.timeline*](https://developer.heello.com/docs/1/GET/users/timeline)
 	* [*heello.users.unlisten*](https://developer.heello.com/docs/1/DELETE/users/listen)
 
-### <Object>` heelloAction
+### `<Object>` heelloAction
 
 Instances of **heelloAction** are special; instead of receiving the instance yourself, you'll receive its product, a callable, to feed your parameters into for your API call.
 
