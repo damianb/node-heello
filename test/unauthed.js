@@ -18,7 +18,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 		it('GET /checkins/:id (heello.checkins.show)', function(done) {
 			heello.checkins.show({ id: 8002938 }, function(err, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(typeof res.response, "object", 'response should be an object')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
@@ -27,25 +27,25 @@ describe('node-heello Unauthenticated REST API -', function() {
 	describe('pings endpoints -', function() {
 		// skipping test; reference: https://github.com/damianb/node-heello/issues/1
 		it.skip('GET /pings/pings (heello.pings.pings)', function(done) {
-			heello.pings.pings(null, function(err, res) {
+			heello.pings.pings(null, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /pings/search (heello.pings.search)', function(done) {
-			heello.pings.search({ query: "heello" }, function(err, res) {
+			heello.pings.search({ query: "heello" }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /pings/:id (heello.pings.show)', function(done) {
-			heello.pings.show({ id: 8188091 }, function(err, res) {
+			heello.pings.show({ id: 8188091 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(typeof res.response, "object", 'response should be an object')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
@@ -53,17 +53,17 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('places endpoints -', function() {
 		it('GET /places/search (heello.places.search)', function(done) {
-			heello.places.search({ name: 'Starbucks', lat: 32.78411, lon: -79.93823 }, function(err, res) {
+			heello.places.search({ name: 'Starbucks', lat: 32.78411, lon: -79.93823 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /places/:id (heello.places.show)', function(done) {
-			heello.places.show({ id: '322-0cab6928-e62b-4d48-a005-5199c61264d3' }, function(err, res) {
+			heello.places.show({ id: '322-0cab6928-e62b-4d48-a005-5199c61264d3' }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(typeof res.response, "object", 'response should be an object')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
@@ -71,41 +71,41 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('users endpoints -', function() {
 		it('GET /users/listeners (heello.users.listeners)', function(done) {
-			heello.users.listeners({ id: 'katana', username: 1 }, function(err, res) {
+			heello.users.listeners({ id: 'katana', username: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /users/listening (heello.users.listening)', function(done) {
-			heello.users.listening({ id: 'katana', username: 1 }, function(err, res) {
+			heello.users.listening({ id: 'katana', username: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /users/lookup (heello.users.lookup)',  function(done) {
-			heello.users.lookup({ ids: 'katana', username: 1 }, function(err, res) {
+			heello.users.lookup({ ids: 'katana', username: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
 
 		it('GET /users/:id/pings (heello.users.pings)', function(done) {
-			heello.users.pings({ id: 'katana', username: 1 }, function(err, res) {
+			heello.users.pings({ id: 'katana', username: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(typeof res.response, "object", 'response should be an object')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
 
 		it('GET /users/:id (heello.users.show)', function(done) {
-			heello.users.show({ id: 'katana', username: 1 }, function(err, res) {
+			heello.users.show({ id: 'katana', username: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(typeof res.response, "object", 'response should be an object')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
@@ -113,9 +113,9 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('timeline endpoints -', function() {
 		it('GET /timeline/public (heello.timeline.public)', function(done) {
-			heello.timeline.public({}, function(err, res) {
+			heello.timeline.public({}, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(res.response instanceof Array, 'response should be an array')
+				assert(json.response instanceof Array, 'response should be an array')
 				done()
 			})
 		})
