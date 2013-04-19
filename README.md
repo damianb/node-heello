@@ -1,6 +1,6 @@
 # node-heello
 
-node.js library for interaction with the social network [Heello](https://developer.heello.com)
+node.js library for interaction with the social network [Heello](https://developer.heello.com).
 
 ## license
 
@@ -121,10 +121,12 @@ Callbacks supplied to the heelloAction can take up to three parameters:
 
 A full example of a **heelloAction** call, assuming `heello` is your **heelloAPI** instance, is as follows:
 
-	heello.pings.show({ id: 8188091 }, function(err, json, res) {
-		if(err) throw err
-		json.response // contains API response information
-	})
+``` js
+heello.pings.show({ id: 8188091 }, function(err, json, res) {
+	if(err) throw err
+	json.response // contains API response information
+})
+```
 
 With this call, we're looking up details for a heello ping with the ID of `8188091`.
 
@@ -132,33 +134,35 @@ With this call, we're looking up details for a heello ping with the ID of `81880
 
 ## use example
 
-	var heelloAPI = require('heello'),
-		heello = new heelloAPI({
-			appId: 'heello appId here',
-			appSecret: 'heello appSecret here',
-			callbackURI: 'http://callback.tld/',
-		})
-
-	// @note; authentication needs to happen here - obtain your tokens as per heello docs
-	// reference helper methods heelloAPI.getAuthURI, heelloAPI.getTokens, heelloAPI.refreshTokens
-
-	// heello.controller.action(<Object>params, <Callable>callback)
-
-	// get a user's latest pings
-	// (no auth)
-	heello.users.pings({ id: 1234567, count: 5 }, function(err, json, res) {
-		if(err) throw err
-		json.response.forEach(function(ping) {
-			console.log('@%s: %s [%d]', ping.user.username, ping.text, ping.id)
-		})
+``` js
+var heelloAPI = require('heello'),
+	heello = new heelloAPI({
+		appId: 'heello appId here',
+		appSecret: 'heello appSecret here',
+		callbackURI: 'http://callback.tld/',
 	})
 
-	// echo a ping
-	// (needs auth)
-	heello.pings.echo({ id: 1234567 }, function(err) {
-		// @param <Error|null>err: null if no error, or Error if an error.
-		if(err) throw err
+// @note; authentication needs to happen here - obtain your tokens as per heello docs
+// reference helper methods heelloAPI.getAuthURI, heelloAPI.getTokens, heelloAPI.refreshTokens
+
+// heello.controller.action(<Object>params, <Callable>callback)
+
+// get a user's latest pings
+// (no auth)
+heello.users.pings({ id: 1234567, count: 5 }, function(err, json, res) {
+	if(err) throw err
+	json.response.forEach(function(ping) {
+		console.log('@%s: %s [%d]', ping.user.username, ping.text, ping.id)
 	})
+})
+
+// echo a ping
+// (needs auth)
+heello.pings.echo({ id: 1234567 }, function(err) {
+	// @param <Error|null>err: null if no error, or Error if an error.
+	if(err) throw err
+})
+```
 
 ## warning
 
