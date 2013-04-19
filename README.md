@@ -21,18 +21,19 @@ MIT license
 		* `<String>` *domain*: the domain to use for API contact. provided for testing purposes only.
 		* `<String>` *userAgent*: the useragent to use when contacting the API.
 
-* `<String>` heelloAPI.prototype.getAuthURI(`<String>` *state*)
+* heelloAPI.prototype.getAuthURI(`<String>` *state*)
 	* **Synchronous**
+	* *Obtain the URI to redirect a user to in order to obtain authorization details from the heello API*
 	* `<String>` *state*: optional session-identifying string. reference heello oauth2 authorization documentation for more information
-	* **return**: `<String>` URI to redirect user to for authentication with heello.
+	* `return`: `<String>` URI to redirect user to for authentication with heello.
 
 * heelloAPI.prototype.getTokens(`<String>` *code*, `<Callable>` *callback*)
-	* Obtain refresh, access tokens using authorization_code returned by heello
+	* *Obtain refresh, access tokens using authorization_code returned by heello*
 	* `<String>` *code*: authorization_code obtained from heello API authentication
 	* `<Callable>` *callback*: callback to invoke once token obtainment is complete
 
 * heelloAPI.prototype.refreshTokens(`<String>` *refreshToken*, `<Callable>` *callback*)
-	* Obtain new refresh, access tokens using previously obtained refresh_token (only necessary if access_token is now invalid)
+	* *Obtain new refresh, access tokens using previously obtained refresh_token (only necessary if access_token is now invalid)*
 	* `<String>` *refreshToken*: previously obtained refresh_token
 	* `<Callable>` *callback*: callback to invoke once token obtainment is complete
 
@@ -114,9 +115,9 @@ You'll call a **heelloAction** like so:
 
 Callbacks supplied to the heelloAction can take up to three parameters:
 
-* `<Error>`*err*: null if no error, or Error if an error occurred during API call.
-* `<Object>`*json*: JSON-parsed response from the API if provided, or null
-* `<Object>`*res*: response object from npm module [superagent](https://github.com/visionmedia/superagent). inherits from node builtin http.ClientResponse.
+* `<Error>` *err*: null if no error, or Error if an error occurred during API call.
+* `<Object>` *json*: JSON-parsed response from the API if provided, or null
+* `<Object>` *res*: response object from npm module [superagent](https://github.com/visionmedia/superagent). inherits from node builtin http.ClientResponse.
 
 A full example of a **heelloAction** call, assuming `heello` is your **heelloAPI** instance, is as follows:
 
