@@ -5,7 +5,7 @@ var assert = require('assert'),
 
 /**
  * This test suite requires that the test runner have their own OAuth2 credentials
- * to run the tests, storing them in /test.config.json
+ * to run the tests, storing them in $repo/test.config.json
  */
 if(!require('fs').existsSync(path.normalize(__dirname + '/../test.config.json')))
 	throw new Error('A test.config.json file must be present in the root of the repository to run tests')
