@@ -24,7 +24,7 @@ describe('node-heello Authenticated REST API -', function() {
 		var refreshToken = null
 		if(fs.existsSync(path.normalize(__dirname + '/../test.refreshtoken.json')))
 			refreshToken = require(__dirname + '/../test.refreshtoken.json')
-		if(!code) {
+		if(!refreshToken) {
 			var query = {
 				client_id: heello.conf.appId,
 				redirect_uri: heello.conf.callbackURI,
@@ -142,11 +142,6 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('oauth endpoints -', function() {
-		it.skip('GET /oauth/authorize', function(done) {
-			assert(heello.code, 'OAuth2 refresh code')
-			done()
-		})
-
 		it('GET /oauth/token', function(done) {
 			assert(heello.refreshToken, 'OAuth2 refresh token')
 			assert(heello.accessToken, 'OAuth2 access token')
