@@ -23,6 +23,10 @@ var heelloAPI = require('./lib/heello'),
 // get a user's latest pings
 // (no auth)
 heello.users.pings({ id: 1234567, count: 5 }, function(err, json, res) {
+	// @param <Error|null>err: null if no error, or Error if an error.
+	// @param <Object|null>json: JSON-parsed response from the API if provided, or null
+	// @param <Object>res: response object from npm module "superagent". inherits from node builtin ClientResponse
+	// for more docs on "superagent", see: https://github.com/visionmedia/superagent
 	if(err) throw err
 	json.response.forEach(function(ping) {
 		console.log('@%s: %s [%d]', ping.user.username, ping.text, ping.id)
@@ -32,6 +36,7 @@ heello.users.pings({ id: 1234567, count: 5 }, function(err, json, res) {
 // echo a ping
 // (needs auth)
 heello.pings.echo({ id: 1234567 }, function(err) {
+	// @param <Error|null>err: null if no error, or Error if an error.
 	if(err) throw err
 })
 ```
