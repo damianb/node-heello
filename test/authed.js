@@ -149,19 +149,28 @@ describe('node-heello Authenticated REST API -', function() {
 		})
 	})
 
-	describe('accounts endpoints -', function() {
-		it('PUT /accounts.json (heello.accounts.update)')
-	})
-
 	describe('checkins endpoints -', function() {
-		it('POST /checkins.json (heello.checkins.create)')
+		it('POST /checkins.json (heello.checkins.create)', function(done) {
+			heello.checkins.create({
+				'ping[place_id]': '322-0cab6928-e62b-4d48-a005-5199c61264d3',
+				'ping[text]': 'node-heello test checkin - please ignore; will self-destruct shortly'
+			}, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(res.status, 201, 'request error - should return http 201')
+
+				heello.pings.destroy({ id: json.response.id }, function(err, json, res) {
+					assert.ifError(err, 'request error')
+					done()
+				})
+			})
+		})
 	})
 
 	describe('pings endpoints -', function() {
 		var pingId
 		it('POST /pings.json (heello.pings.create)', function(done) {
 			heello.pings.create({
-				'ping[text]':'node-heello test ping'
+				'ping[text]':'node-heello test ping, please ignore; will self-destruct shortly'
 			}, function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert.equal(res.status, 201, 'request error - should return http 201')
@@ -200,17 +209,71 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('users endpoints -', function() {
-		it('GET /users/:id/checkins (heello.users.checkins)')
+		var bio
+		it('GET /users/:id/checkins.json (heello.users.checkins)', function(done) {
+			heello.users.checkins({ count: 3 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
 
-		it('GET /users/:id/listen (heello.users.listen)')
+		it('POST /users/:id/listen.json (heello.users.listen)', function(done) {
+			heello.users.listen({ id: 1 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(res.status, 201, 'request error - should return http 201')
+				assert.equal(typeof json.response, "object", 'response should be an object')
+				done()
+			})
+		})
 
-		it('GET /users/me (heello.users.me)')
+		it('GET /users/me.json (heello.users.me)', function(done) {
+			heello.users.me(function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(typeof json.response, "object", 'response should be an object')
+				bio = json.response.bio
+				done()
+			})
+		})
 
-		it('GET /users/notifications (heello.users.notifications)')
+		// test currently disabled - https://github.com/Heello/Issues/issues/15
+		it.skip('PUT /accounts.json (heello.accounts.update) - CHANGE BIO', function(done) {
+			heello.accounts.update({ 'user[bio]': 'node-heello test bio change' }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(res.status, 204, 'request error - should return http 204')
 
-		it('GET /users/timeline (heello.users.timeline')
+				heello.accounts.update({ 'user[bio]': bio }, function(err, json, res) {
+					assert.ifError(err, 'request error')
+					assert.equal(res.status, 204, 'request error - should return http 204')
+					done()
+				})
+			})
+		})
 
-		it('DELETE /users/:id/listen (heello.users.unlisten)')
+		it('GET /users/notifications.json (heello.users.notifications)', function(done) {
+			heello.users.notifications({ count: 3 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+
+		it('GET /users/timeline.json (heello.users.timeline', function(done) {
+			heello.users.timeline({ count: 3 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+
+		it('DELETE /users/:id/listen.json (heello.users.unlisten)', function(done) {
+			heello.users.unlisten({ id: 1 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert.equal(res.status, 200, 'request error - should return http 200')
+				assert.equal(typeof json.response, "object", 'response should be an object')
+				done()
+			})
+		})
 	})
 
 	describe('timeline endpoints -', function() {
