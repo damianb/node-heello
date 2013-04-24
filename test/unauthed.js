@@ -26,7 +26,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('pings endpoints -', function() {
 		it('GET /pings.json (heello.pings.summary)', function(done) {
-			heello.pings.summary(null, function(err, json, res) {
+			heello.pings.summary(function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert(json.response instanceof Array, 'response should be an array')
 				done()
@@ -112,7 +112,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 
 	describe('timeline endpoints -', function() {
 		it('GET /timeline/public.json (heello.timeline.public)', function(done) {
-			heello.timeline.public({}, function(err, json, res) {
+			heello.timeline.public(function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert(json.response instanceof Array, 'response should be an array')
 				done()
