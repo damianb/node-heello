@@ -1,6 +1,7 @@
 {
 	"accounts": {
 		"update": {
+			"url": "",
 			"method": "PUT",
 			"mediaParams": [
 				"avatar",
@@ -102,7 +103,7 @@
 	},
 	"users": {
 		"checkins": {
-			"url": ":id/checkins",
+			"url": "checkins",
 			"method": "GET",
 			"needsAuth": true
 		},
