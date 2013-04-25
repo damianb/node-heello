@@ -236,15 +236,14 @@ describe('node-heello Authenticated REST API -', function() {
 			})
 		})
 
-		// test currently disabled - https://github.com/Heello/Issues/issues/15
-		it.skip('PUT /accounts.json (heello.accounts.update) - CHANGE BIO', function(done) {
+		it('PUT /accounts.json (heello.accounts.update) - CHANGE BIO', function(done) {
 			heello.accounts.update({ 'user[bio]': 'node-heello test bio change' }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert.equal(res.status, 204, 'request error - should return http 204')
+				assert.equal(res.status, 200, 'request error - should return http 200')
 
 				heello.accounts.update({ 'user[bio]': bio }, function(err, json, res) {
 					assert.ifError(err, 'request error')
-					assert.equal(res.status, 204, 'request error - should return http 204')
+					assert.equal(res.status, 200, 'request error - should return http 200')
 					done()
 				})
 			})
