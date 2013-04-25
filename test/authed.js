@@ -205,9 +205,15 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('places endpoints -', function() {
-		it.skip('POST /places.json (heello.places.create)', function(done) {
-			heello.places.create({ }, function(err, json, res) {
+		it('POST /places.json (heello.places.create)', function(done) {
+			heello.places.create({
+				'place[name]': 'node-heello test location',
+				'place[latitude]': '46.420642',
+				'place[longitude]': '-87.407412',
+			}, function(err, json, res) {
 				assert.ifError(err, 'request error')
+				assert.equal(res.status, 200, 'request error - should return http 200')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
