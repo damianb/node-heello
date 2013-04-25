@@ -205,7 +205,12 @@ describe('node-heello Authenticated REST API -', function() {
 	})
 
 	describe('places endpoints -', function() {
-		it('POST /places.json (heello.places.create)')
+		it.skip('POST /places.json (heello.places.create)', function(done) {
+			heello.places.create({ }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				done()
+			})
+		})
 	})
 
 	describe('users endpoints -', function() {
