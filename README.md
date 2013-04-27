@@ -175,23 +175,23 @@ See `test/authed.js` for an (ugly) example on how to do it.
 
 ## tests
 
-Install mocha with `npm install -g mocha`, then run `npm test`.
+Install mocha with `npm install -g mocha`.
 
-A `test.config.json` file is necessary to run the tests as well - an example of the file is as follows:
+Now, create a `test.config.json` file - an example of the file is as follows:
 
 ``` json
 {
 	"appId":"appid",
 	"appSecret":"appsecret",
 	"callbackURI":"http://127.0.0.1:9009/",
-	"account":{
-		"username":"yourusername",
-		"password":"yourpassword"
-	}
 }
 ```
+
+Next, execute `node node_modules/heello-refreshtoken/bin/gettoken -o ./test.refreshtoken.json` and enter in your appId, appSecret, callback URI, heello username, and heello password when prompted.  Give it a moment to obtain the refresh token, then proceed with testing using mocha.
 
 When creating a test application on Heello, use the redirect URI `http://127.0.0.1:9009/` as well to allow tests to run correctly.
 The testing methodology is unforgiving, unfortunately, and must work within Heello's current API rules.
 
-Test coverage is still insufficient and expanding. Community contributions welcome.
+---
+
+Community contributions welcome.
