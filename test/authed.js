@@ -21,121 +21,17 @@ describe('node-heello Authenticated REST API -', function() {
 		}).listen(9009)
 
 	before(function(done) {
-		var refreshToken = null
-		if(fs.existsSync(path.normalize(__dirname + '/../test.refreshtoken.json')))
-			refreshToken = require(__dirname + '/../test.refreshtoken.json')
+		var refreshToken = null, tokenFile = path.normalize(__dirname + '/../test.refreshtoken.json')
+
+		if(fs.existsSync(tokenFile))
+			refreshToken = require(tokenFile)
+
 		if(!refreshToken) {
-			var query = {
-				client_id: heello.conf.appId,
-				redirect_uri: heello.conf.callbackURI,
-				response_type: 'code',
-				state: '42'
-			}
-			var cheerio = require('cheerio'), agent = new request.agent()
-
-			require('async').waterfall([
-				function(fn) {
-					var req = request.post(heello.conf.protocol + '://' + heello.conf.domain + '/oauth/authorize')
-						.set('User-Agent', heello.conf.userAgent)
-						.type('form')
-						.send(query)
-
-					req.on('response', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.attachCookies.bind(agent, req))
-					agent.attachCookies(req)
-
-					req.end(function(err, res) {
-						if(err) {
-							fn(err)
-						} else {
-							fn(null, res)
-						}
-					})
-				},
-				function(res, fn) {
-					var req = request.post(heello.conf.protocol + '://' + heello.conf.domain + '/users/sign_in')
-						.set('User-Agent', heello.conf.userAgent)
-						.set('Referer', '')
-						.type('form')
-					agent.saveCookies(res)
-
-					var inputs = cheerio.load(res.text)('form[action^="/users/sign_in"] input'), input = {},
-						needed = ['authenticity_token', 'state', 'response_type', 'redirect_uri', 'client_id', 'commit']
-					for(var i in inputs) {
-						if(inputs[i].attribs !== undefined && needed.indexOf(inputs[i].attribs.name) !== -1)
-							input[inputs[i].attribs.name] = inputs[i].attribs.value
-					}
-					input.utf8 = new Buffer('e29c93', 'hex').toString()
-					req.send(input)
-					req.send({ user: testConfig.account })
-
-					req.on('response', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.attachCookies.bind(agent, req))
-					agent.attachCookies(req)
-
-					req.end(function(err, res) {
-						if(err) {
-							fn(err)
-						} else {
-							fn(null, res)
-						}
-					})
-				},
-				function(res, fn) {
-					if(Object.keys(res.body).length){
-						fn(null, res)
-						return
-					}
-
-					var req = request('POST', heello.conf.protocol + '://' + heello.conf.domain + '/oauth/authorize')
-						.set('User-Agent', heello.conf.userAgent)
-						.type('form')
-					agent.saveCookies(res)
-
-					var inputs = cheerio.load(res.text)('form[action^="/oauth/authorize"] input'), input = {},
-						needed = ['authenticity_token', 'state', 'response_type', 'redirect_uri', 'client_id']
-					for(var i in inputs) {
-						if(inputs[i].attribs !== undefined && needed.indexOf(inputs[i].attribs.name) !== -1)
-							input[inputs[i].attribs.name] = inputs[i].attribs.value
-					}
-					input.utf8 = new Buffer('e29c93', 'hex').toString()
-					input.commit = 'Authorize'
-					req.send(input)
-
-					req.on('response', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.saveCookies.bind(agent))
-					req.on('redirect', agent.attachCookies.bind(agent, req))
-					agent.attachCookies(req)
-
-					req.end(function(err, res) {
-						if(err) {
-							fn(err)
-						} else {
-							fn(null, res)
-						}
-					})
-				},
-				function(res, fn) {
-					heello.getTokens(res.body.response.code, function(err) {
-						if(err) {
-							fn(err)
-						} else {
-							fs.writeFileSync(__dirname + '/../test.refreshtoken.json', JSON.stringify({ token: heello.refreshToken }))
-							fn()
-						}
-					})
-				},
-
-			], function(err) {
-				if(err) throw err
-				done()
-			})
+			throw new Error('no refresh token found - please obtain one and store it in ' + tokenFile)
 		} else {
 			heello.refreshTokens(refreshToken.token, function(err) {
 				if(err) throw err
-				fs.writeFileSync(__dirname + '/../test.refreshtoken.json', JSON.stringify({ token: heello.refreshToken }))
+				fs.writeFileSync(tokenFile, JSON.stringify({ token: heello.refreshToken }))
 				done()
 			})
 		}
