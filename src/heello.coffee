@@ -18,7 +18,7 @@ Array::remove = (from, to) ->
 
 class heelloApi extends EventEmitter
 	constructor: (options) ->
-		if options? then options = {}
+		if not options then throw new Error 'no options provided to heelloApi constructor'
 		for own controller, actions of schema then do (controller, actions) =>
 			@__defineGetter__ controller, =>
 				new heelloController @, controller, actions
@@ -185,7 +185,7 @@ class heelloAction
 				options.queryData = params
 				@api._request options, (err, json, res) =>
 					if err and err.message is ETOKENEXPIRED
-						@api.refreshTokens () ->
+						@api.refreshTokens @api.refreshToken, () ->
 							options.queryData['access_token'] = @api.accessToken
 							@api._request options, fn
 					else
