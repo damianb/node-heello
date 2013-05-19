@@ -14,6 +14,40 @@ var testConfig = require('../test.config.json')
 describe('node-heello Unauthenticated REST API -', function() {
 	var heello = new heelloAPI(testConfig)
 
+	describe('categories endpoints -', function() {
+		it('GET /categories.json (heello.categories.get)', function(done) {
+			heello.categories.get(function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+
+		it('GET /categories/primary.json (heello.categories.primary)', function(done) {
+			heello.categories.primary(function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+
+		it('GET /categories/secondary/:id.json (heello.categories.secondary)', function(done) {
+			heello.categories.secondary({ id: 1 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+
+		it('GET /categories/:id.json (heello.categories.show)', function(done) {
+			heello.categories.show({ id: 1 }, function(err, json, res) {
+				assert.ifError(err, 'request error')
+				assert(json.response instanceof Array, 'response should be an array')
+				done()
+			})
+		})
+	})
+
 	describe('checkins endpoints -', function() {
 		it('GET /checkins/:id.json (heello.checkins.show)', function(done) {
 			heello.checkins.show({ id: 8002938 }, function(err, json, res) {
