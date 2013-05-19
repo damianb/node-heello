@@ -11,6 +11,33 @@
 			"needsAuth": true
 		}
 	},
+	"categories": {
+		"get": {
+			"url": "",
+			"needsAuth": false
+		},
+		"primary": {
+			"url": "/primary",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"secondary": {
+			"url": "/secondary/:id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		},
+		"show": {
+			"url": ":id",
+			"method": "GET",
+			"reqQueryParams": [
+				"key"
+			]
+		}
+	},
 	"checkins": {
 		"create": {
 			"method": "POST",
