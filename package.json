@@ -5,7 +5,7 @@
 	"homepage": "https://github.com/damianb/node-heello",
 	"version":"1.0.2",
 	"dependencies": {
-		"superagent": "0.12.x"
+		"superagent": "0.14.x"
 	},
 	"devDependencies": {
 		"heello-refreshtoken": "0.1.0"
