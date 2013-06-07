@@ -88,11 +88,11 @@ class heelloApi extends EventEmitter
 			req.timeout 15*1000
 			if options.method is 'POST' or options.method is 'PUT'
 				req.type 'form'
-				req.send options.queryData or {}
+				req.send (options.queryData or {})
 				#if options.media then
 					# meh
 			else
-				req.query options.queryData or {}
+				req.query (options.queryData or {})
 
 			if req.req._headers.cookie?
 				`// workaround for superagent bug: https://github.com/visionmedia/superagent/issues/206 `
@@ -164,12 +164,12 @@ class heelloAction
 				else if not @needsAuth
 					params['key'] = @api.conf.appId
 				else
-					throw new Error util.format 'api call heelloApi.%s.%s requires authentication, none provided', @controller, @action
+					throw new Error 'api call heelloApi.#{ @controller }.#{ @action } requires authentication, none provided'
 
 				for own key, param of params then do (param) ->
 					if reqParams.indexOf param isnt -1 then reqParams.remove reqParams.indexOf param
 				if reqParams.length > 0
-					throw new Error util.format 'api call heelloApi.%s.%s required parameter(s) [%s] not provided', @controller, @action, reqParams.join ', '
+					throw new Error 'api call heelloApi#{ @controller }.#{ @action } required parameter(s) [#{ reqParams.join ", " }] not provided'
 
 				@urlParams.forEach (p) ->
 					options.url = options.url.replace ':' + p, params[p]
