@@ -42,7 +42,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 		it('GET /categories/:id.json (heello.categories.show)', function(done) {
 			heello.categories.show({ id: 1 }, function(err, json, res) {
 				assert.ifError(err, 'request error')
-				assert(json.response instanceof Array, 'response should be an array')
+				assert.equal(typeof json.response, "object", 'response should be an object')
 				done()
 			})
 		})
