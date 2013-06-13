@@ -110,6 +110,11 @@
 		}
 	},
 	"users": {
+		"block": {
+			"url": ":id/block",
+			"method": "POST",
+			"needsAuth": true
+		},
 		"checkins": {
 			"url": "checkins",
 			"method": "GET",
@@ -160,6 +165,11 @@
 		"timeline": {
 			"url": "timeline",
 			"method": "GET",
+			"needsAuth": true
+		},
+		"unblock": {
+			"url": ":id/block",
+			"method": "DELETE",
 			"needsAuth": true
 		},
 		"unlisten": {

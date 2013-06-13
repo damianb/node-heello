@@ -100,6 +100,7 @@ All magic properties return an executable callback created by **heelloAction**. 
 	* [*heello.timeline.public*](https://developer.heello.com/docs/1/GET/timeline/public)
 
 * **heelloController** *users*:
+  * [*heello.users.block*](https://developer.heello.com/docs/1/POST/users/block)
 	* [*heello.users.checkins*](https://developer.heello.com/docs/1/GET/users/checkins)
 	* [*heello.users.listen*](https://developer.heello.com/docs/1/POST/users/listen)
 	* [*heello.users.listeners*](https://developer.heello.com/docs/1/GET/users/listeners)
@@ -110,6 +111,7 @@ All magic properties return an executable callback created by **heelloAction**. 
 	* [*heello.users.pings*](https://developer.heello.com/docs/1/GET/users/pings)
 	* [*heello.users.show*](https://developer.heello.com/docs/1/GET/users/show)
 	* [*heello.users.timeline*](https://developer.heello.com/docs/1/GET/users/timeline)
+	* [*heello.users.unblock*](https://developer.heello.com/docs/1/DELETE/users/block)
 	* [*heello.users.unlisten*](https://developer.heello.com/docs/1/DELETE/users/listen)
 
 ### `<Object>` heelloAction
