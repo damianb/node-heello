@@ -67,7 +67,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 			})
 		})
 
-		it('GET /pings/search.json (heello.pings.search)', function(done) {
+		it.skip('GET /pings/search.json (heello.pings.search)', function(done) {
 			heello.pings.search({ query: "api" }, function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert(json.response instanceof Array, 'response should be an array')
@@ -93,7 +93,7 @@ describe('node-heello Unauthenticated REST API -', function() {
 			})
 		})
 
-		it('GET /places/:id.json (heello.places.show)', function(done) {
+		it.skip('GET /places/:id.json (heello.places.show)', function(done) {
 			heello.places.show({ id: '322-0cab6928-e62b-4d48-a005-5199c61264d3' }, function(err, json, res) {
 				assert.ifError(err, 'request error')
 				assert.equal(typeof json.response, "object", 'response should be an object')
