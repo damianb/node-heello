@@ -55,6 +55,7 @@ MIT license
 All magic properties are instances of **heelloController**.
 
 * accounts
+* categories
 * checkins
 * pings
 * places
@@ -71,6 +72,12 @@ All magic properties return an executable callback created by **heelloAction**. 
 
 * **heelloController** *accounts*:
 	* [*heello.accounts.update*](https://developer.heello.com/docs/1/PUT/accounts/update)
+
+* **heelloController** *categories*:
+	* [*heello.categories.get*](https://developer.heello.com/docs/1/GET/categories/get)
+	* [*heello.categories.primary*](https://developer.heello.com/docs/1/GET/categories/primary)
+	* [*heello.categories.secondary*](https://developer.heello.com/docs/1/GET/categories/secondary)
+	* [*heello.categories.show*](https://developer.heello.com/docs/1/GET/categories/show)
 
 * **heelloController** *checkins*:
 	* [*heello.checkins.create*](https://developer.heello.com/docs/1/POST/checkins/checkin)
