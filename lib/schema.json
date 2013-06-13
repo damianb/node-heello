@@ -19,23 +19,17 @@
 		"primary": {
 			"url": "/primary",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"secondary": {
 			"url": "/secondary/:id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"show": {
 			"url": ":id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		}
 	},
 	"checkins": {
@@ -49,9 +43,7 @@
 		"show": {
 			"url": ":id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		}
 	},
 	"pings": {
@@ -79,24 +71,19 @@
 		"summary": {
 			"url": "",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"search": {
 			"url": "search",
 			"method": "GET",
 			"reqQueryParams": [
-				"key",
 				"query"
 			]
 		},
 		"show": {
 			"url": ":id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		}
 	},
 	"places": {
@@ -107,25 +94,19 @@
 		"search": {
 			"url": "search",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"show": {
 			"url": ":id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		}
 	},
 	"timeline": {
 		"public": {
 			"url": "public",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		}
 	},
 	"users": {
@@ -142,16 +123,12 @@
 		"listeners": {
 			"url": ":id/listeners",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"listening": {
 			"url": ":id/listening",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"lookup": {
 			"url": "lookup",
@@ -173,16 +150,12 @@
 		"pings": {
 			"url": ":id/pings",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"show": {
 			"url": ":id",
 			"method": "GET",
-			"reqQueryParams": [
-				"key"
-			]
+			"reqQueryParams": []
 		},
 		"timeline": {
 			"url": "timeline",
