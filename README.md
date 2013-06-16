@@ -20,6 +20,8 @@ MIT license
 		* `<String>` *protocol*: specify "https" or "http" for the protocol to to use for API contact. provided for testing purposes only
 		* `<String>` *domain*: the domain to use for API contact. provided for testing purposes only.
 		* `<String>` *userAgent*: the useragent to use when contacting the API.
+		* `<Array>` *fingerprints*: an array of certificate fingerprints to identify the Heello API with.
+		* `<Boolean>` *pinCerts*: should certificate pinning be enforced? this will discard responses and throw errors when non-SSL responses or non-whitelisted fingerprints are provided from the server.
 
 * heelloAPI.prototype.getAuthURI(`<String>` *state*)
 	* **Synchronous**
