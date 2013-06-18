@@ -115,6 +115,11 @@
 			"method": "POST",
 			"needsAuth": true
 		},
+		"blocking": {
+			"url": "blocking",
+			"method": "GET",
+			"needsAuth": true
+		},
 		"checkins": {
 			"url": "checkins",
 			"method": "GET",
