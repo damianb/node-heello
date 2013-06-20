@@ -103,6 +103,7 @@ All magic properties return an executable callback created by **heelloAction**. 
 
 * **heelloController** *users*:
   * [*heello.users.block*](https://developer.heello.com/docs/1/POST/users/block)
+	* [*heello.users.blocking*](https://developer.heello.com/docs/1/GET/users/blocking)
 	* [*heello.users.checkins*](https://developer.heello.com/docs/1/GET/users/checkins)
 	* [*heello.users.listen*](https://developer.heello.com/docs/1/POST/users/listen)
 	* [*heello.users.listeners*](https://developer.heello.com/docs/1/GET/users/listeners)
@@ -176,13 +177,13 @@ heello.pings.echo({ id: 1234567 }, function(err) {
 
 Under active development. Heello-interaction API mostly firm.
 
-Initial obtainment of `authorization_code` is up to **$developer** unfortunately; no OOB methodology is present for obtaining an authorization_code with minimal user interaction.
-See `test/authed.js` for an (ugly) example on how to do it.
+Initial obtainment of `authorization_code` is up to **$developer** unfortunately; no solid methodology is present for obtaining an authorization_code with minimal user interaction.
+
+If you *need* a refresh token for your application, however, please reference package [heello-refreshtoken](https://github.com/damianb/heello-refreshtoken) for a method of obtaining a refresh token fairly easily for testing.
 
 ## todo
 
 * file upload support (media uploads!)
-* emit warning when nearing rate limit?
 
 ## tests
 
